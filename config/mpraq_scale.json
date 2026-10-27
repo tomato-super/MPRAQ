@@ -1,0 +1,11 @@
+{
+  "rows": 4096,
+  "columns_per_attribute": 32,
+  "attributes": 2,
+  "predicates": 3,
+  "lambda": 80,
+  "eps": 0.0001,
+  "seed": 7,
+  "security_mode": "malicious",
+  "enable_repeat_query_cache": true
+}

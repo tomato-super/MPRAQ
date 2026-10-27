@@ -1,0 +1,30 @@
+# ===========================================================================
+# 构建产物（可再生，一律不入库）
+#   约定：构建目录用 `build/`，或按用途命名成 `build_<用途>/`（见 TASK_PLAN §3.4）
+# ===========================================================================
+build/
+build_*/
+
+# protobuf/gRPC 生成代码（由 CMake 在构建时重新生成，见 proto/CMakeLists.txt）
+proto/gen
+
+# 编辑器 / 系统
+.vscode/
+*.swp
+.DS_Store
+
+# 第三方 vendor（体积大、非本项目代码；构建时仍需它在磁盘上）
+third_parts/*
+# ⚠️ 例外：`json/json.hpp` 是本项目**构建必需**的单头文件（CMake 直接 include），
+#    且**不是**自动生成的 ⇒ 必须入库，否则全新 clone 连 `cmake` 都过不了。
+#    （必须写成 `third_parts/*` 而非 `third_parts/`：gitignore 不允许在被排除的
+#      父目录下重新纳入文件。）
+!third_parts/json/
+
+# 论文目录：只忽略大体积二进制，源码/文本仍入库
+doc/paper/*.pdf
+
+doc/
+
+# 实验数据（脚本 scripts/exp_*.py 的默认输出根，体积大且可重跑）
+exp-data/
